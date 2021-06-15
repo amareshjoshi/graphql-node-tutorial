@@ -1,3 +1,10 @@
+#
+# editors and IDEs
+# JetBrains
+.idea
+# VSCode
+*.code-workspace
+
 # Logs
 logs
 *.log
