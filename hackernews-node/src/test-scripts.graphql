@@ -1,0 +1,47 @@
+Query testLink {
+        link(id: "link-1")  {
+            id,
+            url,
+            description
+        }
+}
+Query feed {
+    feed {
+        id,
+        url,
+        description
+    }
+}
+
+mutation {
+    post(url: "www.prisma.io", description: "Prisma replaces traditional ORMs") {
+        id
+        url,
+        description
+    }
+}
+mutation {
+    post(url: "www.umich.edu", description: "U of Michigan") {
+        id
+        url,
+        description
+    }
+}
+
+mutation {
+    # Update a link
+    updateLink(id: "link-2", url: "www.foobar.com", description: "Foo Bar LLC"){
+        id,
+        url,
+        description
+    }
+}
+
+mutation {
+    # Update a link
+    deleteLink(id: "link-0"){
+        id,
+        url,
+        description
+    }
+}
