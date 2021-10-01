@@ -1,4 +1,4 @@
-Query testLink {
+Query findLink {
         link(id: "link-1")  {
             id,
             url,

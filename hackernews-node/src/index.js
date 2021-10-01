@@ -34,7 +34,7 @@ const resolvers = {
             link: (parent, args) => {
                 // return the link from the links array that matches args.id
                 let matchingLink = links.find(link => link.id === args.id);
-                return matchinglink;
+                return matchingLink;
             }
         },
         //
