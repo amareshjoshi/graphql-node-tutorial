@@ -5,13 +5,23 @@ let links = [{
     id: 'link-0',
     url: 'www.howtographql.com',
     description: 'Fullstack tutorial for GraphQL'
-},
+    },
     {
         id: 'link-1',
         url: 'www.msu.edu',
         description: 'Michigan State University'
     },
-]
+    {
+        id: 'link-2',
+        url: 'www.umich.edu',
+        description: 'U of Michigan'
+    },
+    {
+        id: 'link-3',
+        url: 'www.prisma.io',
+        description: 'Prisma replaces traditional ORMs'
+    },
+];
 
 //
 // resolvers process requests
@@ -42,13 +52,14 @@ const resolvers = {
             // Update a link
             updateLink: (parent, args) => {
                 // find the link with id = args.id and change its values
-                for (link of links) {
-                    if (args.id == link.id) {
+                links.forEach((link) => {
+                    if (args.id === link.id) {
                         link.url = args.url;
                         link.description = args.description;
-                        return link;
                     }
-                }
+                });
+                let matchingLink = links.find(link => link.id === args.id);
+                return matchingLink;
             },
             deleteLink: (parent, args) => {
                 // find the link with id = args.id and save it
