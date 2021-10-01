@@ -23,11 +23,8 @@ const resolvers = {
             //
             link: (parent, args) => {
                 // return the link from the links array that matches args.id
-                for (link of links) {
-                    if (args.id == link.id) {
-                        return link;
-                    }
-                }
+                let matchingLink = links.find(link => link.id === args.id);
+                return matchinglink;
             }
         },
         //
@@ -55,7 +52,7 @@ const resolvers = {
             },
             deleteLink: (parent, args) => {
                 // find the link with id = args.id and save it
-                // remove it from the links array
+                // then remove it from the links array
                 let deleteLink = links.find(link => link.id === args.id);
                 links = links.filter(link => link.id !== args.id);
                 return deleteLink;
