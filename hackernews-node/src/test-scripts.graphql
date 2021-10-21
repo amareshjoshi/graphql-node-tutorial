@@ -1,3 +1,7 @@
+#
+# the GraphQL explorer only lets you run one command at a time
+# you can create multiple tabs in the explorer and paste
+# different commands in each tab
 Query findLink {
         link(id: "link-1")  {
             id,
@@ -28,13 +32,6 @@ mutation {
     }
 }
 
-Query feed {
-    feed {
-        id,
-        url,
-        description
-    }
-}
 mutation {
     # Update a link
     updateLink(id: "link-2", url: "www.baz.biz", description: "Foo Bar LLC"){

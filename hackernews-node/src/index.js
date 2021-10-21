@@ -1,6 +1,7 @@
 const {ApolloServer} = require("apollo-server");
 
-// (static) data
+//
+// static data
 let links = [{
     id: 'link-0',
     url: 'www.howtographql.com',
@@ -24,21 +25,22 @@ let links = [{
 ];
 
 //
-// resolvers process requests
+// resolvers process requests. so you need a resolver for each field
+// and each Query, Mutation and Subscription
 const resolvers = {
         Query: {
             info: () => `This is the API of a Hackernews Clone`,
-            // new resolver for root field (object?) feed
+            // all links
             feed: () => links,
             //
             link: (parent, args) => {
                 // return the link from the links array that matches args.id
-                let matchingLink = links.find(link => link.id === args.id);
-                return matchingLink;
+                return links.find(link => link.id === args.id);
             }
         },
         //
         Mutation: {
+            // add a new Link
             post: (parent, args) => {
                 let idCount = links.length
                 const link = {
@@ -49,7 +51,6 @@ const resolvers = {
                 links.push(link)
                 return link
             },
-            // Update a link
             updateLink: (parent, args) => {
                 // find the link with id = args.id and change its values
                 links.forEach((link) => {
@@ -73,12 +74,10 @@ const resolvers = {
     }
 ;
 
-//
-// i guess filesystem and path
 const fs = require('fs');
 const path = require('path');
 //
-// create the GraphQL server with the schema and resolvers
+// create the GraphQL server with the schema (typeDefs) and resolvers
 const server = new ApolloServer({
     typeDefs: fs.readFileSync(
         path.join(__dirname, 'schema.graphql'),
